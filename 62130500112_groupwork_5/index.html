@@ -46,77 +46,37 @@
 
   <div id="app">
 
-    <div class="pb-6 text-3xl font-semibold">Photo Gallery ( {{ tasks.length }} )</div>
+
+
+
+
+    <div class="grid grid-cols-2">
+
+
+<div>
+
+      <div class="pb-6 text-3xl font-semibold">Photo Gallery ( {{ tasks.length }} )</div>
+
+      <photo-search @search-text="inputSeach"></photo-search>
+
+      <p v-show="notFound">Image not found</p>
 
 
 
 
 
+      <photo-item :tasks='search' @img-click='getIndex'></photo-item>
+    </div>
+
+
+    <div v-show='view' class='bg-black'> 
+      <photo-view :src='src' @close='close'> </photo-view>
+
+    </div>
 
 
 
-
-
-    <photo-search @search-text="inputSeach"></photo-search>
-
-
-
-<!-- 
-    <i v-show="!doSearch" class="material-icons p-3 ml-60" v-on:click="doSearch = true">
-      search
-    </i>
-
-
-
-    <div v-show="doSearch">
-
-      <input v-model="inputTask" @keyup.enter="search" placeholder="Please enter text for searching photos"
-        class='p-2 border-2 w-72' />
-
-      <button v-on:click="cancelSeach" class='m-2 p-2 bg-blue-300'>cancel</button>
-
-    </div> -->
-
-    <p v-show="notFound">Image not found</p>
-
-
-
-
-
-    <photo-item :tasks = 'search'></photo-item>
-
-    <!-- <div v-for="(task,index) in search" class="flex pb-6">
-
-      <div>
-        <div v-show='task.zoom' class="bg-black w-full ">
-          <i class="material-icons text-white top-0 right-0" v-on:click="zoom(index)">
-            cancel
-          </i>
-
-          <img :src="task.image" class="p-40" />
-
-
-
-        </div>
-
-
-        <p class="mb-2 text-xl">{{ task.article }}
-          <i class="material-icons text-red-400 pl-3 cursor-pointer" v-on:click="task.done = true" v-show="!task.done">
-            favorite_border
-          </i>
-
-          <i class="material-icons text-red-400 pl-3 cursor-pointer" v-on:click="task.done = false" v-show="task.done">
-            favorite
-          </i>
-        </p>
-        <img :src="task.image" class="h-64 w-64" v-on:click="zoom(index)" />
-
-
-      </div>
-
-
-
-    </div> -->
+    </div>
 
 
 
@@ -134,7 +94,7 @@
   <script src="./component/PhotoView.js"></script>
 
   <script>
-     const mountedApp = app.mount('#app')
+    const mountedApp = app.mount('#app')
   </script>
 
 

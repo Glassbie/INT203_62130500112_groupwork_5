@@ -25,14 +25,11 @@ app.component('photo-item', {
             favorite
           </i>
         </p>
-        <img :src="task.image" @click='' class="h-64 w-64"  />
+        <img :src="task.image" @click='imgClick(index)' class="h-64 w-64"  />
 
       </div>
 
     </div>
-
-    
-
 
     `,
     data() {
@@ -44,8 +41,10 @@ app.component('photo-item', {
       toggleDone(index) {
         this.tasks[index].done = !this.tasks[index].done
     },
-    imgClick(){
-      let index = this.task.index
+    imgClick(index){
+      
+      let id = index
+      this.$emit('img-click',id);
       
     }
         

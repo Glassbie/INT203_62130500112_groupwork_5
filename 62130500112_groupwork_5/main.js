@@ -29,26 +29,26 @@ const app = Vue.createApp( {
         ],
             inputTask: '',
             notFound: false,
-            doSearch: false,
-            notFound: false,
-            index: 0
+            view: false,
+            src : ''
         }
     },
 
     methods: {
-        toggleDone(index) {
-            this.tasks[index].done = !this.tasks[index].done
-        },
-
         inputSeach(texts) {
             this.inputTask = texts;
+            this.view = false;
+            this.src = '';
         },
 
         getIndex(index){
-            this.index = index;
+            this.src = this.tasks[index].image
+            this.view = true;
         },
-        zoom(index) {
-            this.tasks[index].zoom = !this.tasks[index].zoom;
+        close(){
+            this.view = false;
+            this.src = '';
+
         }
     },
 
